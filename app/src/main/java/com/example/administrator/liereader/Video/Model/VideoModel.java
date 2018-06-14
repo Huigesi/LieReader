@@ -1,9 +1,7 @@
 package com.example.administrator.liereader.Video.Model;
 
-import android.util.Base64;
 import android.util.Log;
 
-import com.example.administrator.liereader.Bean.NewsBean;
 import com.example.administrator.liereader.Bean.VideoBean;
 import com.example.administrator.liereader.Http.Api;
 import com.example.administrator.liereader.Http.RetrofitHelper;
@@ -14,17 +12,10 @@ import com.example.administrator.liereader.Video.Presenter.VideoPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.zip.CRC32;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import rx.Observable;
-import rx.Scheduler;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action0;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
@@ -36,7 +27,7 @@ public class VideoModel implements IVideoModel {
     private String TAG = "VideoModel";
 
     @Override
-    public void loadVideo(String category, final Boolean first, final IOnLoadListener iOnLoadListener) {
+    public void loadVideo(String category, final Boolean first, final IVideoLoadListener iVideoLoadListener) {
         final List<MainUrlBean> videoList = new ArrayList<>();
         final List<TodayContentBean> contentBeans = new ArrayList<>();
         final RetrofitHelper retrofitHelper = new RetrofitHelper(Api.TODAY_HOST);
@@ -63,13 +54,13 @@ public class VideoModel implements IVideoModel {
                 .subscribe(new Subscriber<MainUrlBean>() {
                     @Override
                     public void onCompleted() {
-                        iOnLoadListener.mainUrlSuccess(videoList, contentBeans,first);
+                        iVideoLoadListener.mainUrlSuccess(videoList, contentBeans,first);
                         Log.i(TAG, "onCompleted: " + videoList.size());
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        iOnLoadListener.fail(e.getMessage());
+                        iVideoLoadListener.fail(e.getMessage());
                     }
 
                     @Override

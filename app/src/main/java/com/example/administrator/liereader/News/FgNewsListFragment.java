@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrator.liereader.Bean.NewsBean;
+import com.example.administrator.liereader.IBaseView;
 import com.example.administrator.liereader.News.Presenter.NewsPresenter;
 import com.example.administrator.liereader.News.View.INewsView;
 import com.example.administrator.liereader.R;
@@ -26,7 +27,7 @@ import java.util.List;
 import java.util.TimerTask;
 
 
-public class FgNewsListFragment extends Fragment implements INewsView {
+public class FgNewsListFragment extends Fragment implements INewsView,IBaseView {
     private static final String TAG = "FgNewsListFragment";
     private NewsPresenter presenter;
     private int type;
@@ -130,6 +131,7 @@ public class FgNewsListFragment extends Fragment implements INewsView {
 
         adapter.notifyDataSetChanged();
     }
+
 
 
     @Override

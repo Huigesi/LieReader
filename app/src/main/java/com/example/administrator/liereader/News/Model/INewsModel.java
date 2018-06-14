@@ -5,5 +5,5 @@ package com.example.administrator.liereader.News.Model;
  */
 
 public interface INewsModel {
-    void loadNews(String hostType,int startPage,String id,IOnLoadListener iOnLoadListener);
+    void loadNews(String hostType,int startPage,String id,INewsLoadListener iNewsLoadListener);
 }

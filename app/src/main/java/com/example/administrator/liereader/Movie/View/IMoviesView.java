@@ -2,15 +2,15 @@ package com.example.administrator.liereader.Movie.View;
 
 import com.example.administrator.liereader.Bean.MoviesBean;
 import com.example.administrator.liereader.Bean.NewsBean;
+import com.example.administrator.liereader.IBaseView;
+import com.example.administrator.liereader.Movie.Presenter.IMoviesPresenter;
 
 /**
  * Created by Administrator on 2018/5/19.
  */
 
-public interface IMoviesView {
+public interface IMoviesView extends IBaseView{
     void showMovie(MoviesBean moviesBean);
-    void showMore(MoviesBean moviesBean);
-    void hideDialog();
-    void showDialog();
-    void showErrorMsg(String throwable);
+    void showMoreMovie (MoviesBean moviesBean);
+
 }

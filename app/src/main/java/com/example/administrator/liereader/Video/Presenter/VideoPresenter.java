@@ -3,9 +3,10 @@ package com.example.administrator.liereader.Video.Presenter;
 import android.util.Base64;
 import android.util.Log;
 
+import com.example.administrator.liereader.IBaseOnLoadListener;
 import com.example.administrator.liereader.MainUrlBean;
 import com.example.administrator.liereader.TodayContentBean;
-import com.example.administrator.liereader.Video.Model.IOnLoadListener;
+import com.example.administrator.liereader.Video.Model.IVideoLoadListener;
 import com.example.administrator.liereader.Video.Model.IVideoModel;
 import com.example.administrator.liereader.Video.Model.VideoModel;
 import com.example.administrator.liereader.Video.View.IVideoView;
@@ -19,7 +20,7 @@ import java.util.zip.CRC32;
  * Created by Administrator on 2018/5/19.
  */
 
-public class VideoPresenter implements IVideoPresenter, IOnLoadListener {
+public class VideoPresenter implements IVideoPresenter, IVideoLoadListener {
     private static final String TAG = "VideoPresenter";
     private IVideoModel iVideoModel;
     private IVideoView iVideoView;
@@ -43,10 +44,26 @@ public class VideoPresenter implements IVideoPresenter, IOnLoadListener {
             videoList.add(url1);
         }
         if (first){
-            iVideoView.showVideo(contentBeans,videoList);
+            iVideoView.showData(contentBeans,videoList);
         }else {
-            iVideoView.showMore(contentBeans,videoList);
+            iVideoView.showMoreData(contentBeans,videoList);
         }
+
+    }
+
+
+    @Override
+    public void success(Object data) {
+
+    }
+
+    @Override
+    public void beforeRequest() {
+
+    }
+
+    @Override
+    public void completeRequest() {
 
     }
 

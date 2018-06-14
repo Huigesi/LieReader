@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.administrator.liereader.IBaseView;
 import com.example.administrator.liereader.R;
 import com.example.administrator.liereader.TodayContentBean;
 import com.example.administrator.liereader.Video.Presenter.IVideoPresenter;
@@ -39,10 +40,10 @@ public class FgVideoFragment extends Fragment implements IVideoView {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        iVideoPresenter = new VideoPresenter(this);
         rv_video = view.findViewById(R.id.rv_video);
         srl_video = view.findViewById(R.id.srl_video);
         srl_video.setColorSchemeColors(Color.parseColor("#ffce3d3a"));
+        iVideoPresenter = new VideoPresenter(this);
         iVideoPresenter.loadVideo(true);
         srl_video.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -63,20 +64,6 @@ public class FgVideoFragment extends Fragment implements IVideoView {
     }
 
 
-    @Override
-    public void showVideo(List<TodayContentBean> todayContentBeans, List<String> videoList) {
-        itemVideoAdapter.setData(todayContentBeans, videoList);
-         layoutManager=new LinearLayoutManager(getActivity(),
-                LinearLayoutManager.VERTICAL, false);
-        rv_video.setLayoutManager(layoutManager);
-        rv_video.setAdapter(itemVideoAdapter);
-    }
-
-    @Override
-    public void showMore(List<TodayContentBean> todayContentBeans, List<String> videoList) {
-        itemVideoAdapter.addData(todayContentBeans,videoList);
-        itemVideoAdapter.notifyDataSetChanged();
-    }
 
     @Override
     public void hideDialog() {
@@ -93,4 +80,19 @@ public class FgVideoFragment extends Fragment implements IVideoView {
         Toast.makeText(getContext(), throwable, Toast.LENGTH_SHORT).show();
     }
 
+
+    @Override
+    public void showData(List<TodayContentBean> todayContentBeans, List<String> videoList) {
+        itemVideoAdapter.setData(todayContentBeans, videoList);
+        layoutManager=new LinearLayoutManager(getActivity(),
+                LinearLayoutManager.VERTICAL, false);
+        rv_video.setLayoutManager(layoutManager);
+        rv_video.setAdapter(itemVideoAdapter);
+    }
+
+    @Override
+    public void showMoreData(List<TodayContentBean> todayContentBeans, List<String> videoList) {
+        itemVideoAdapter.addData(todayContentBeans,videoList);
+        itemVideoAdapter.notifyDataSetChanged();
+    }
 }

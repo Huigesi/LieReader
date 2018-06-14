@@ -3,7 +3,7 @@ package com.example.administrator.liereader.News.Presenter;
 import com.example.administrator.liereader.Bean.NewsBean;
 import com.example.administrator.liereader.Http.Api;
 import com.example.administrator.liereader.News.FgNewsFragment;
-import com.example.administrator.liereader.News.Model.IOnLoadListener;
+import com.example.administrator.liereader.News.Model.INewsLoadListener;
 import com.example.administrator.liereader.News.Model.INewsModel;
 import com.example.administrator.liereader.News.Model.NewsModel;
 import com.example.administrator.liereader.News.View.INewsView;
@@ -12,7 +12,7 @@ import com.example.administrator.liereader.News.View.INewsView;
  * Created by Administrator on 2018/5/19.
  */
 
-public class NewsPresenter implements INewsPresenter,IOnLoadListener{
+public class NewsPresenter implements INewsPresenter,INewsLoadListener {
 
     private INewsModel iNewsModel;
     private INewsView iNewsView;
@@ -27,6 +27,16 @@ public class NewsPresenter implements INewsPresenter,IOnLoadListener{
     public void success(NewsBean newsBean) {
         iNewsView.hideDialog();
         iNewsView.showNews(newsBean);
+    }
+
+    @Override
+    public void beforeRequest() {
+
+    }
+
+    @Override
+    public void completeRequest() {
+
     }
 
     @Override

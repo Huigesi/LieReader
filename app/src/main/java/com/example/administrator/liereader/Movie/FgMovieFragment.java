@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.administrator.liereader.Bean.MoviesBean;
+import com.example.administrator.liereader.IBaseView;
+import com.example.administrator.liereader.Movie.Presenter.IMoviesPresenter;
 import com.example.administrator.liereader.Movie.Presenter.MoviesPresenter;
 import com.example.administrator.liereader.Movie.View.IMoviesView;
 import com.example.administrator.liereader.R;
@@ -87,10 +89,11 @@ public class FgMovieFragment extends Fragment implements IMoviesView {
     }
 
     @Override
-    public void showMore(MoviesBean moviesBean) {
-            adapter.addData(moviesBean.getSubjects());
-            adapter.notifyDataSetChanged();
+    public void showMoreMovie(MoviesBean moviesBean) {
+        adapter.addData(moviesBean.getSubjects());
+        adapter.notifyDataSetChanged();
     }
+
 
     @Override
     public void hideDialog() {
